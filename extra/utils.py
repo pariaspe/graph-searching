@@ -236,6 +236,9 @@ class CharMap:
         """
         Set all cells as not visited.
         """
+        self.nodes = []
+        self.start = self.start
+        self.end = self.end
 
         for row in self.charMap:
             for c in row:
@@ -274,6 +277,18 @@ def get_route(nodes, goalParentId):
                     print("%%%%%%%%%%%%%%%%%")
                     ok = True
     return route
+
+def print_results(results):
+    print()
+    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+    print("%%           RESULTS            %%")
+    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+    print()
+    print("Route \t Cells \t")
+    print("Length\tChecked\t  Time")
+    print("--------------------------------")
+    print("{0}\t{1}\t{2}".format(*results))
+    print()
 
 
 if __name__ == "__main__":

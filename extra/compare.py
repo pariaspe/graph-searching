@@ -83,11 +83,14 @@ def do_compare(map_name, start, end):
     map.reset()
     # time.sleep(1)
 
-    shortest = "BFS" if bfs_result[0] < dfsr_result[0] < dfsl_result[0] else "DFSr" if dfsr_result[0] < dfsl_result[0] else "DFSl"
+    shortest = "BFS" if 48 < 90 < 80 else "DFSr" if 90 < 80 else "DFSl"
+
+
+    shortest = "BFS" if bfs_result[0] < min(dfsr_result[0], dfsl_result[0]) else "DFSr" if dfsr_result[0] < dfsl_result[0] else "DFSl"
     shortest_val = min(bfs_result[0], dfsr_result[0], dfsl_result[0])
-    less_cell = "BFS" if bfs_result[1] < dfsr_result[1] < dfsl_result[1] else "DFSr" if dfsr_result[1] < dfsl_result[1] else "DFSl"
+    less_cell = "BFS" if bfs_result[1] < min(dfsr_result[1], dfsl_result[1]) else "DFSr" if dfsr_result[1] < dfsl_result[1] else "DFSl"
     less_cell_val = min(bfs_result[1], dfsr_result[1], dfsl_result[1])
-    fastest = "BFS" if bfs_result[2] < dfsr_result[2] < dfsl_result[2] else "DFSr" if dfsr_result[2] < dfsl_result[2] else "DFSl"
+    fastest = "BFS" if bfs_result[2] < min(dfsr_result[2], dfsl_result[2]) else "DFSr" if dfsr_result[2] < dfsl_result[2] else "DFSl"
     fastest_val = min(bfs_result[2], dfsr_result[2], dfsl_result[2])
 
     print()
@@ -157,16 +160,18 @@ def print_final_results():
 def main():
     maps = [["map1", [2, 2], [7, 2]],
             ["map2", [2, 2], [10, 7]],
-            # ["map3", [4, 10], [4, 14]],
-            # ["map4", [4, 10], [4, 14]],
+            ["map3", [4, 10], [4, 14]],
+            ["map4", [4, 10], [4, 14]],
             ["map5", [4, 15], [4, 9]],
             ["map6", [2, 2], [10, 17]],
             ["map7", [3, 9], [3, 15]],
-            # ["map8", [2, 2], [10, 17]],
+            ["map8", [2, 2], [10, 17]],
             ["map9", [3, 9], [3, 15]],
             ["map10", [3, 9], [3, 15]],
             ["map11", [3, 15], [3, 9]]
             ]
+
+    labs = [["lab1", [2, 2], [15, 15]]]
 
     for map in maps:
         do_compare(*map)

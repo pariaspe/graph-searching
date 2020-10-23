@@ -6,10 +6,11 @@ import sys
 import os
 from itertools import cycle
 import argparse
+import time
 
 sys.path.append('../')
 from utils import Output, OUTPUT_MODE, UserInputException, Colors, CharMapCell,\
-                    CharMap, Node, get_route
+                    CharMap, Node, get_route, print_results
 
 __author__ = "Pedro Arias Perez"
 
@@ -135,8 +136,12 @@ def main(filename, start, end, is_clockwise):
 
     map.dump()
 
+    t0 = time.time()
     goalParentId = dfs(map, is_clockwise)
     route = get_route(map.nodes, goalParentId)
+    tf = time.time()
+
+    print_results([len(route), map.n_checked, round((tf-t0), 5)])
 
 
 if __name__ == "__main__":
