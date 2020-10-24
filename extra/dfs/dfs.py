@@ -1,6 +1,10 @@
 #! /usr/bin/env python
 
-"""Implementation of DFS algorithm with colored map."""
+"""Implementation of Depth First Search algorithm.
+
+Supports printing with colored map, interactive enter mode and statistical
+results.
+"""
 
 import sys
 import os
@@ -25,6 +29,17 @@ END_Y = 2
 
 
 def read_from_user(m, s, e):
+    """
+    Gets map, start point, end point and rotation direction from the user.
+    Raise exception if data entered is incorrect.
+    Exiting loop: Crtl+D.
+
+    m: default map (str)
+    s: default start point ([int, int])
+    e: default end point ([int, int])
+
+    return: [map (str), start ([int, int]), end ([int, int]), is_clockwise (bool)] chosen by user.
+    """
     while True:
         try:
             map = input("Map ({}): ".format(m))
@@ -94,6 +109,15 @@ def read_from_user(m, s, e):
 
 
 def dfs(map, is_clockwise=True):
+    """
+    Executes Depth First Searh Algorithm.
+
+    map: Map where to find the path (CharMap).
+    is_clockwise: right or left handed algorithm (bool).
+
+    return: goalParentId, id of node which found goal (id).
+    """
+
     if is_clockwise:
         directions = cycle([[-1, 0], [0, 1], [1, 0], [0, -1]])  # up, right, down, left, up, right...
     else:
@@ -128,6 +152,15 @@ def dfs(map, is_clockwise=True):
 
 
 def main(filename, start, end, is_clockwise):
+    """
+    Entering method. Creates the map, execs the algorithm and prints the result.
+    Raise exception if map is invalid.
+
+    filename: map file name (str)
+    start: start point ([int, int])
+    end: end point ([int, int])
+    is_clockwise: right or left handed algorithm (bool)
+    """
     try:
         map = CharMap(filename, start, end)
     except UserInputException:
@@ -145,6 +178,7 @@ def main(filename, start, end, is_clockwise):
 
 
 if __name__ == "__main__":
+    # Command line argument parser, try: python3 dfs.py -h
     parser = argparse.ArgumentParser(description="Depth First Search Algorithm.")
     parser.add_argument('-m', '--map', metavar='MAP', dest='map', default=MAP, help='change map folder')
     parser.add_argument('-s', '--start', type=int, nargs=2, metavar='N', dest='start', default=[START_X, START_Y], help='change start point')

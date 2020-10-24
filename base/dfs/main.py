@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-"""Implementation of DFS algorithm."""
+"""Implementation of Depth First Search algorithm."""
 
 import os
 from itertools import cycle

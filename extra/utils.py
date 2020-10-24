@@ -9,6 +9,12 @@ __author__ = "Pedro Arias Perez"
 
 
 class Output(Enum):
+    """
+    Enumerate to change the standard output format.
+    NONE: sys.stdout = os.devnull -> no output is printed
+    BASE: cells are printed with their number codes (0 -> empty, 1 -> wall...)
+    COLORED: cells are printed with thier color codes (white -> empty, black -> wall...)
+    """
     NONE = 'none'
     BASE = 'base'
     COLORED = 'colored'
@@ -18,6 +24,7 @@ OUTPUT_MODE = Output.COLORED
 
 
 class UserInputException(Exception):
+    """Custom exception to raise when user usage error."""
     pass
 
 
@@ -85,9 +92,9 @@ class CharMapCell:
             raise TypeError("invalid operation between", type(self), "and", type(o))
 
     def __str__(self):
-        if OUTPUT_MODE == Output.BASE:
+        if OUTPUT_MODE == Output.BASE:  # just char printing
             return self.c
-        elif OUTPUT_MODE == Output.COLORED:
+        elif OUTPUT_MODE == Output.COLORED:  # colored printing
             if self.c == "0":
                 return self.EMPTY + self.c + self.RESET
             elif self.c  == "1":
@@ -133,6 +140,12 @@ class CharMap:
 
     @start.setter
     def start(self, s):
+        """
+        Start setter. Also adds start position as root in nodes tree.
+        Raise exception if s position is non-existent or occupied.
+
+        s: start position ([int, int])
+        """
         if s is not None:
             if self.charMap[s[0]][s[1]].c == "1":  # wall
                 print("[Error] Invalid start position.", file=sys.stderr)
@@ -151,6 +164,12 @@ class CharMap:
 
     @end.setter
     def end(self, e):
+        """
+        End setter.
+        Raise exception if e position is non-existent or occupied.
+
+        e: end position ([int, int])
+        """
         if e is not None:
             if self.charMap[e[0]][e[1]].c in ["1", "3"]:  # wall or start
                 print("[Error] Invalid end position.", file=sys.stderr)
@@ -165,8 +184,9 @@ class CharMap:
     def read(self, filename):
         """
         Reads map from file and save it at charMap attribute.
+        Raise exception if map file is not found.
 
-        filename: path to file.
+        filename: path to file (str).
         """
         try:
             with open(filename) as f:
@@ -184,7 +204,7 @@ class CharMap:
 
     def dump(self):
         """
-        Prints colored map.
+        Prints map.
         """
 
         for line in self.charMap:
@@ -198,10 +218,10 @@ class CharMap:
         """
         Check if cell is end or not visited and add it to tree nodes.
 
-        cell: current cell
-        node: parent node
+        cell: current cell ([int, int])
+        node: parent node (Node)
 
-        return: parent id if end else -1
+        return: parent_id if goal_found else -1
         """
 
         self.n_checked += 1
@@ -234,7 +254,7 @@ class CharMap:
 
     def reset(self):
         """
-        Set all cells as not visited.
+        Set all cells as not visited, clear tree nodes and reser checked cells counter.
         """
         self.nodes = []
         self.start = self.start
@@ -259,11 +279,22 @@ class Node:
         self.parentId = parentId
 
     def dump(self):
+        """
+        Prints node.
+        """
         print("---------- x", str(self.x), "| y", str(self.y), "| id",\
               str(self.myId), "| parentId", str(self.parentId))
 
 
 def get_route(nodes, goalParentId):
+    """
+    Goes through the nodes tree to find the path found.
+
+    nodes: tree node ([*Node])
+    goalParentId: id of node which foun goal (int)
+
+    return: route, list of nodes from start to goal ([*Node]).
+    """
     print("%%%%%%%%%%%%%%%%%%%")
     route = []
     ok = False
@@ -279,6 +310,11 @@ def get_route(nodes, goalParentId):
     return route
 
 def print_results(results):
+    """
+    Prints the statistical results obtained with a certain format.
+
+    results: route length, numer of cells accessed and execution time ([int, int, float])
+    """
     print()
     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
     print("%%           RESULTS            %%")

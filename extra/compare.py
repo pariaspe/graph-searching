@@ -1,6 +1,11 @@
 #! /usr/bin/env python
 
-"""Comparation of algorithms."""
+"""Comparison of algorithms.
+
+Comparison of bfs and dfs (right and left handed) algorithms over a list of
+maps. The comparison is made between the route lenght found, the number of cells
+accessed over the map and the execution time.
+"""
 
 import os
 import sys
@@ -24,6 +29,13 @@ DFS_ACCL = [0, 0, 0]
 
 
 def run_bfs(map):
+    """
+    Execs bfs silenced (no output is printed) and registering start and end time.
+
+    map: a map (CharMap)
+
+    return: results: route length, number of cells accessed and time ([int, int, float])
+    """
     sys.stdout = open(os.devnull, 'w')  # silence
     t0 = time.time()
     goalParentId = bfs(map)
@@ -35,6 +47,14 @@ def run_bfs(map):
 
 
 def run_dfs(map, is_clockwise=True):
+    """
+    Execs dfs silenced (no output is printed) and registering start and end time.
+
+    map: a map (CharMap)
+    is_clockwise: right or left handed (bool)
+
+    return: results: route length, number of cells accessed and time ([int, int, float])
+    """
     sys.stdout = open(os.devnull, 'w')  # silence
     t0 = time.time()
     goalParentId = dfs(map, is_clockwise)
@@ -46,6 +66,13 @@ def run_dfs(map, is_clockwise=True):
 
 
 def do_compare(map_name, start, end):
+    """
+    Compares the algorithms in a specific map and prints the partial results.
+
+    map_name: the map name (str)
+    start: start point ([int, int])
+    end: end point ([int, int])
+    """
     map = CharMap(FILE_NAME.format(map_name), start, end)
 
     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
@@ -104,6 +131,9 @@ def do_compare(map_name, start, end):
 
 
 def print_final_results():
+    """
+    Prints final and accumulative results.
+    """
     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
     print("%%           TOTAL              %%")
     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")

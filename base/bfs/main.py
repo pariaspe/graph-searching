@@ -1,8 +1,11 @@
 #! /usr/bin/env python
 
-"""Implementation of DFS algorithm."""
+"""Implementation of Breadth First Search algorithm."""
 
 import os
+
+__author__ = "Juan G. Victores"
+
 
 LOCAL_PATH = os.path.dirname(os.path.abspath(__file__)).split("base")[0]
 FILE_NAME = LOCAL_PATH + "maps/map1/map1.csv"

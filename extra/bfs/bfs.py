@@ -1,6 +1,10 @@
 #! /usr/bin/env python
 
-"""Implementation of BFS algorithm with colored map."""
+"""Implementation of Breadth First Search algorithm.
+
+Supports printing with colored map, interactive enter mode and statistical
+results.
+"""
 
 import os
 import sys
@@ -24,6 +28,17 @@ END_Y = 2
 
 
 def read_from_user(m, s, e):
+    """
+    Gets map, start point and end point from the user.
+    Raise exception if data entered is incorrect.
+    Exiting loop: Crtl+D.
+
+    m: default map (str)
+    s: default start point ([int, int])
+    e: default end point ([int, int])
+
+    return: [map (str), start ([int, int]), end ([int, int])] chosen by user.
+    """
     while True:
         try:
             map = input("Map ({}): ".format(m))
@@ -80,6 +95,14 @@ def read_from_user(m, s, e):
 
 
 def bfs(map):
+    """
+    Executes Breadth First Searh Algorithm.
+
+    map: Map where to find the path (CharMap).
+
+    return: goalParentId, id of node which found goal (id).
+    """
+
     done = False
     goalParentId = -1
     while not done:
@@ -130,6 +153,15 @@ def bfs(map):
 
 
 def main(filename, start, end):
+    """
+    Entering method. Creates the map, execs the algorithm and prints the result.
+    Raise exception if map is invalid.
+
+    filename: map file name (str)
+    start: start point ([int, int])
+    end: end point ([int, int])
+    """
+
     try:
         map = CharMap(filename, start, end)
     except UserInputException:
@@ -147,6 +179,7 @@ def main(filename, start, end):
 
 
 if __name__ == "__main__":
+    # Command line argument parser, try: python3 bfs.py -h
     parser = argparse.ArgumentParser(description="Breadth First Search Algorithm.")
     parser.add_argument('-m', '--map', metavar='MAP', dest='map', default=MAP, help='change map folder')
     parser.add_argument('-s', '--start', type=int, nargs=2, metavar='N', dest='start', default=[START_X, START_Y], help='change start point')

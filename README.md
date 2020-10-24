@@ -7,20 +7,24 @@ Link: [pariaspe/graph-searching](https://github.com/pariaspe/graph-searching)
 
 
 ## Índice
-- [1. Descripción](#descripción)
-- [2. Estructura de Carpetas](#estructura-de-carpetas)
-- [3. Extras](#extras)
-    - [3.1. Extra 1](#extra-1-visualización-y-resumen)
-    - [3.2. Extra 2](#extra-2-algoritmo-interactivo)
-    - [3.3. Extra 3](#extra-3-comparación-de-algoritmos)
-    - [3.4. Extra 4](#extra-4-mapa-laberinto)
+- [1. Descripción](#1-descripción)
+- [2. Estructura de Carpetas](#2-estructura-de-carpetas)
+- [3. Base](#3-base)
+- [4. Extras](#4-extras)
+    - [4.1. Extra 1](#extra-1-visualización-y-resumen)
+    - [4.2. Extra 2](#extra-2-algoritmo-interactivo)
+    - [4.3. Extra 3](#extra-3-comparación-de-algoritmos)
+    - [4.4. Extra 4](#extra-4-mapa-laberinto)
 
 ---
 
-## Descripción
+## 1. Descripción
+Para la práctica se han realizado los siguientes hitos:
+
 - **Base**:
-    1. **BFS.** Nota: He modificado levemente el código para que no haya que cambiar la ruta del mapa al cambiar el equipo.
-    2. **Algoritmo greedy (DFS).** Notas: He tratado de modificar al mínimo el código inicial de BFS. El algoritmo es a derechas y utiliza una FIFO para almacenar los nodos e ir recorriendo el mapa.
+    1. BFS.
+    2. Algoritmo greedy (DFS).
+
 
 - **Extra**:
     1. Mejora de visualización y resumen de ejecución.
@@ -29,7 +33,8 @@ Link: [pariaspe/graph-searching](https://github.com/pariaspe/graph-searching)
     4. Mapa laberinto.
 
 
-## Estructura de carpetas
+## 2. Estructura de carpetas
+El esquema de organización del reposition es el siguiente:
 ```
 .
 +-- doc (img...)
@@ -45,11 +50,21 @@ Link: [pariaspe/graph-searching](https://github.com/pariaspe/graph-searching)
         +-- dfs.py
     +-- utils.py
     +-- compare.py
-    +-- comparation.txt
+    +-- comparison.txt
 +-- README.md
 ```
 
-## Extras
+## 3. Base
+El algoritmo greedy que he hecho es un DFS. Destacar sobre ambos algoritmos las siguientes consideraciones:
+
+Sobre **BFS**:
+- He modificado levemente el código para que no haya que cambiar la ruta del mapa al cambiar el equipo.
+
+Sobre **DFS**:
+- He modificado mínimamente el código reorganizando el código en clases (creando la clase "mapa" `CharMap`) y en métodos ejecutados según una secuencia de control establecida en `main()`.
+- El algoritmo es a derechas y utiliza una FIFO para almacenar los nodos e ir recorriendo el mapa.
+
+## 4. Extras
 ### Extra 1: Visualización y Resumen
 Se le ha dado formato al texto que se imprime por la terminal. De esa forma, haciendo uso de caracteres ANSI se puede mejorar la visualizaciṕn sin necesidad de una usar una librería externa.
 Para ello se ha reestructurado el código en distintas clases, creando varias nuevas, que se encuentran en el fichero utils.py. Los distintos algoritmos utilizan métodos y clases de este fichero.
@@ -133,7 +148,7 @@ $ cd extra
 $ python3 compare.py
 ```
 
-La salida de esta ejecución se volcado al archivo de texto `comparation.py` donde se puede comprobar los resultados obtenidos. La comparación aquí expuesta se ha realizado sobre todos los mapas que se han facilitado con el material para la práctica. La intención es tener un espectro de pruebas amplio que permita obtener unos resultados generales, y que no dependan de la configuración específica de un mapa en particular.
+La salida de esta ejecución se volcado al archivo de texto `comparison.py` donde se puede comprobar los resultados obtenidos. La comparación aquí expuesta se ha realizado sobre todos los mapas que se han facilitado con el material para la práctica. La intención es tener un espectro de pruebas amplio que permita obtener unos resultados generales, y que no dependan de la configuración específica de un mapa en particular.
 
 ```
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
