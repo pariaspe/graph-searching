@@ -224,4 +224,4 @@ Less checks ----> DFSl (375)
 Fastest --------> DFSl (0.0336)
 ```
 
-TODO: explicar resultados
+Los resultados obtenidos son similares a los expuestos en el apartado anterior. El camino más corto es el encontrado por el BFS (60) siendo además el más lento. El más rápido es el DFS a izquierzas, que curiosamente posee la ruta más larga pero que es el que menos accesos a casillas del mapa ha realizado.
