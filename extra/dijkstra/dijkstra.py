@@ -98,7 +98,6 @@ class CharMapCost(CharMap):
                 print("[Error] Invalid start position.", file=sys.stderr)
                 raise UserInputException
             self.nodes.append(NodeCost(s[0], s[1], 0, -2, 0))
-            print("STARTING")
         self.__start = s
 
     def check(self, cell, node):
@@ -121,6 +120,20 @@ class CharMapCost(CharMap):
             self.nodes.append(newNode)
         return -1
 
+    def reset(self):
+        """
+        Set all cells as not visited, clear tree nodes and reser checked cells counter.
+        """
+        self.nodes = []
+        self.closed_nodes = []
+        self.start = self.start
+        self.end = self.end
+
+        for row in self.charMap:
+            for c in row:
+                if c == "2":
+                    c.c = "0"
+        self.n_checked = 0
 
 def read_from_user(m, s, e):
     """
