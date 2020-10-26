@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-"""Implementation of Dijkstra algorithm.
+"""Implementation of A* algorithm.
 
 Supports printing with colored map, interactive enter mode and statistical
 results.
@@ -98,7 +98,6 @@ class CharMapCost(CharMap):
                 print("[Error] Invalid start position.", file=sys.stderr)
                 raise UserInputException
             self.nodes.append(NodeCost(s[0], s[1], 0, -2, 0))
-            print("STARTING")
         self.__start = s
 
     def check(self, cell, node):
@@ -121,6 +120,20 @@ class CharMapCost(CharMap):
             self.nodes.append(newNode)
         return -1
 
+    def reset(self):
+        """
+        Set all cells as not visited, clear tree nodes and reser checked cells counter.
+        """
+        self.nodes = []
+        self.closed_nodes = []
+        self.start = self.start
+        self.end = self.end
+
+        for row in self.charMap:
+            for c in row:
+                if c == "2":
+                    c.c = "0"
+        self.n_checked = 0
 
 def read_from_user(m, s, e):
     """
@@ -189,9 +202,9 @@ def read_from_user(m, s, e):
     return map, start, end
 
 
-def dijkstra(map):
+def astar(map):
     """
-    Executes Dijkstra Algorithm.
+    Executes A* Algorithm.
 
     map: Map where to find the path (CharMapCost).
 
@@ -268,7 +281,7 @@ def main(filename, start, end):
     map.dump()
 
     t0 = time.time()
-    goalParentId = dijkstra(map)
+    goalParentId = astar(map)
     route = get_route(map.closed_nodes, goalParentId)
     tf = time.time()
 
@@ -276,8 +289,8 @@ def main(filename, start, end):
 
 
 if __name__ == "__main__":
-    # Command line argument parser, try: python3 dijkstra.py -h
-    parser = argparse.ArgumentParser(description="Dijkstra Algorithm.")
+    # Command line argument parser, try: python3 a-star.py -h
+    parser = argparse.ArgumentParser(description="A* Algorithm.")
     parser.add_argument('-m', '--map', metavar='MAP', dest='map', default=MAP, help='change map folder')
     parser.add_argument('-s', '--start', type=int, nargs=2, metavar='N', dest='start', default=[START_X, START_Y], help='change start point')
     parser.add_argument('-e', '--end', type=int, nargs=2, metavar='N', dest='end', default=[END_X, END_Y], help='change end point')
