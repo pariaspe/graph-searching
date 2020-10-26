@@ -31,9 +31,10 @@ Para la práctica se han realizado los siguientes hitos:
 - **Extra**:
     1. Mejora de visualización y resumen de ejecución.
     2. Algoritmo interactivo.
-    3. Comparación de algoritmos.
-    4. Mapa laberinto.
-    5. Dijkstra y A*
+    3. Dijkstra y A*.
+    4. Comparación de algoritmos uniformes.
+    5. Comparación entre todos los algoritmos.
+    6. Mapa laberinto.
 
 
 ## 2. Estructura de carpetas
@@ -51,9 +52,23 @@ El esquema de organización del reposition es el siguiente:
         +-- bfs.py
     +-- dfs
         +-- dfs.py
+    +-- dijkstra
+        +-- dijkstra.py
+    +-- astar
+        +-- astar.py
     +-- utils.py
     +-- compare.py
     +-- comparison.txt
+    +-- comparison2.txt
++-- maps
+    +-- lab1
+        +-- lab1.csv
+        +-- lab1.jpg
+        +-- README.md
+    +-- map1 (csv...)
+         :
+         :
+    +-- map11 (csv..)
 +-- README.md
 ```
 
