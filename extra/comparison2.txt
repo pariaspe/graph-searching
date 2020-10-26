@@ -1,0 +1,238 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map1		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	9	124	0.00214
+DFSr	27	34	0.00172
+DFSl	29	114	0.00301
+DIJK	9	98	0.00183
+ASTAR	9	46	0.00096
+
+Shortest -------> BFS, DIJK, ASTAR (9)
+Less checks ----> DFSr (34)
+Fastest --------> ASTAR (0.00096)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map2		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	15	271	0.03221
+DFSr	45	252	0.01743
+DFSl	47	126	0.00782
+DIJK	15	270	0.00762
+ASTAR	15	110	0.00367
+
+Shortest -------> BFS, DIJK, ASTAR (15)
+Less checks ----> ASTAR (110)
+Fastest --------> ASTAR (0.00367)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map3		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	48	1012	0.11104
+DFSr	90	1062	0.0871
+DFSl	80	90	0.02126
+DIJK	54	746	0.05404
+ASTAR	54	574	0.04181
+
+Shortest -------> BFS (48)
+Less checks ----> DFSl (90)
+Fastest --------> DFSl (0.02126)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map4		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	58	1220	0.1369
+DFSr	98	1365	0.13152
+DFSl	88	98	0.02935
+DIJK	78	1002	0.09196
+ASTAR	74	930	0.08418
+
+Shortest -------> BFS (58)
+Less checks ----> DFSl (98)
+Fastest --------> DFSl (0.02935)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map5		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	48	1643	0.18415
+DFSr	112	127	0.04879
+DFSl	116	1113	0.1408
+DIJK	50	777	0.08528
+ASTAR	52	737	0.08149
+
+Shortest -------> BFS (48)
+Less checks ----> DFSr (127)
+Fastest --------> DFSr (0.04879)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map6		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	25	663	0.03303
+DFSr	95	531	0.03749
+DFSl	97	276	0.02683
+DIJK	29	671	0.03639
+ASTAR	25	231	0.01091
+
+Shortest -------> BFS, ASTAR (25)
+Less checks ----> ASTAR (231)
+Fastest --------> ASTAR (0.01091)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map7		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	50	1676	0.18003
+DFSr	190	1259	0.18483
+DFSl	204	698	0.13316
+DIJK	62	999	0.11015
+ASTAR	52	837	0.09252
+
+Shortest -------> BFS (50)
+Less checks ----> DFSl (698)
+Fastest --------> ASTAR (0.09252)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map8		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	23	703	0.06545
+DFSr	67	435	0.02942
+DFSl	69	433	0.03199
+DIJK	23	687	0.03487
+ASTAR	29	451	0.02164
+
+Shortest -------> BFS, DIJK (23)
+Less checks ----> DFSl (433)
+Fastest --------> ASTAR (0.02164)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map9		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	34	1700	0.22281
+DFSr	130	2084	0.26556
+DFSl	126	139	0.05584
+DIJK	38	755	0.0833
+ASTAR	34	469	0.04864
+
+Shortest -------> BFS, ASTAR (34)
+Less checks ----> DFSl (139)
+Fastest --------> ASTAR (0.04864)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map10		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	52	2544	0.39607
+DFSr	184	2628	0.47552
+DFSl	174	187	0.10442
+DIJK	56	1179	0.1736
+ASTAR	52	1065	0.16397
+
+Shortest -------> BFS, ASTAR (52)
+Less checks ----> DFSl (187)
+Fastest --------> DFSl (0.10442)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		map11		%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	48	1936	0.2967
+DFSr	138	864	0.18181
+DFSl	212	1659	0.33376
+DIJK	48	920	0.13922
+ASTAR	48	844	0.12677
+
+Shortest -------> BFS, DIJK, ASTAR (48)
+Less checks ----> ASTAR (844)
+Fastest --------> ASTAR (0.12677)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%           TOTAL              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	410	13492	1.66053
+DFSR	1176	10641	1.46119
+DFSL	1242	4933	0.8882399999999999
+DIJK	462	8104	0.81826
+ASTAR	444	6294	0.67656
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%          RANKINGS            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+                LESS
+     SHORTEST  CHECKS  FASTEST
+--------------------------------
+map1	BFS, DIJK, ASTAR	DFSr	ASTAR
+map2	BFS, DIJK, ASTAR	ASTAR	ASTAR
+map3	BFS	DFSl	DFSl
+map4	BFS	DFSl	DFSl
+map5	BFS	DFSr	DFSr
+map6	BFS, ASTAR	ASTAR	ASTAR
+map7	BFS	DFSl	ASTAR
+map8	BFS, DIJK	DFSl	ASTAR
+map9	BFS, ASTAR	DFSl	ASTAR
+map10	BFS, ASTAR	DFSl	DFSl
+map11	BFS, DIJK, ASTAR	ASTAR	ASTAR
+--------------------------------
+
+	SHORTEST ROUTE	
+--------------------------------
+1º: BFS (4)
+2º: BFS, DIJK, ASTAR (3)
+3º: BFS, ASTAR (3)
+
+	LESS CELLS CHECKED
+--------------------------------
+1º: DFSl (6)
+2º: ASTAR (3)
+3º: DFSr (2)
+
+	FASTEST ALGORITHM
+--------------------------------
+1º: ASTAR (7)
+2º: DFSl (3)
+3º: DFSr (1)
+

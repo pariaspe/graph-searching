@@ -13,8 +13,10 @@ Link: [pariaspe/graph-searching](https://github.com/pariaspe/graph-searching)
 - [4. Extras](#4-extras)
     - [4.1. Extra 1](#extra-1-visualización-y-resumen)
     - [4.2. Extra 2](#extra-2-algoritmo-interactivo)
-    - [4.3. Extra 3](#extra-3-comparación-de-algoritmos)
-    - [4.4. Extra 4](#extra-4-mapa-laberinto)
+    - [4.3. Extra 3](#extra-3-dijkstra-y-a*)
+    - [4.4. Extra 4](#extra-4-comparación-entre-algoritmos-uniformes)
+    - [4.5. Extra 5](#extra-5-comparación-entre-todos-los-algoritmos)
+    - [4.6. Extra 6](#extra-6-mapa-laberinto)
 
 ---
 
@@ -31,6 +33,7 @@ Para la práctica se han realizado los siguientes hitos:
     2. Algoritmo interactivo.
     3. Comparación de algoritmos.
     4. Mapa laberinto.
+    5. Dijkstra y A*
 
 
 ## 2. Estructura de carpetas
@@ -140,15 +143,27 @@ optional arguments:
 
 ![modo-interactivo](doc/extra-2.png)
 
-### Extra 3: Comparación de algoritmos
+### Extra 3: Dijkstra y A*
+También se han implementado dos algoritmos con información de costes. Para ello, ha sido necesario extender alguna clase del fichero `utils.py` para añadirles información de costes a los nodos. Las principales diferencias son:
+- Nueva clase nodo `NodeCost` que extiende la clase `Node` añadiendo información sobre el coste.
+- Nueva clase mapa `CharMapCost` que utiliza los nodos con coste (`NodeCost`) y tiene dos listas, una de nodos visitados y otra de nodos por visitar.
+- Nuevo método para calcular el coste con la distancia euclídea (norma dos).
+
+Por lo demás, el algoritmo es similar al BFS, utilizando como nodo central en cada iteración del bucle el nodo con menor coste de la lista de nodos por visitar. Una vez visitado, este nodo se añade a la lista de visitados y se elimina de la lista de nodos por visitar. La ruta final se calcula sobre la lista de nodos visitados.
+
+La diferencia entre Dijkstra y A* es en el cálculo del coste.
+- Dijkstra: `cost = dist(current, start)`
+- A*: `cost = dist(current, start) + dist(current, goal)`
+
+### Extra 4: Comparación entre algoritmos uniformes
 Para comparar los algoritmos se ha creado un fichero (`compare.py`) que ejecuta los algoritmos sobre los distintos mapas y muestra los parámetros más relevantes como el número de accesos a casillas del mapa, el tamaño de la ruta encontrada por el algoritmo o el tiempo de ejecución.
-Para ejecutar esta comparación, es tan sencillo como lanzar el fichero `compare.py`:
+Para ejecutar esta comparación entre algoritmos uniformes, es tan sencillo como lanzar el fichero `compare.py` con la opción `-u`:
 ```
 $ cd extra
-$ python3 compare.py
+$ python3 compare.py -u
 ```
 
-La salida de esta ejecución se volcado al archivo de texto `comparison.py` donde se puede comprobar los resultados obtenidos. La comparación aquí expuesta se ha realizado sobre todos los mapas que se han facilitado con el material para la práctica. La intención es tener un espectro de pruebas amplio que permita obtener unos resultados generales, y que no dependan de la configuración específica de un mapa en particular.
+La salida de esta ejecución se volcado al archivo de texto `comparison.txt` donde se puede comprobar los resultados obtenidos. La comparación aquí expuesta se ha realizado sobre todos los mapas que se han facilitado con el material para la práctica. La intención es tener un espectro de pruebas amplio que permita obtener unos resultados generales, y que no dependan de la configuración específica de un mapa en particular.
 
 ```
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -211,8 +226,76 @@ Por último, es interesante mencionar que en los mapas seleccionados para esta c
 Como conclusión, si se dispone del suficiente tiempo para planificar el movimiento sería más interesante utilizar un algoritmo como BFS, pues eso supondría que el robot realizase la ruta más corta lo que influye en aspectos tan importantes como la autonomía energética del robot.
 Sin embargo, si se dispone de un tiempo de planificación límitado, sería más interesante utilizar un algoritmo como DFS, pues lo tiempos podrían llegar a reducirse a la mitad, como se ha observado en esta pequeña prueba experimental.
 
+### Extra 5: Comparación entre todos los algoritmos
+Esta segunda comparación se realiza entre todos los algoritmos implementados: BFS, DFS (a izquierdas y a derechas), Dijkstra y A*. La comparación ejecuta los once mapas disponibles. Para ejecutarla solo es necesario lanzar el fichero `compare.py`:
 
-### Extra 4: Mapa Laberinto
+```
+$ cd extra
+$ python3 compare.py
+```
+
+La salida de esta ejecución se volcado al archivo de texto `comparison2.txt` donde se puede comprobar los resultados obtenidos. Parte de este fichero se copia a continuación.
+
+```
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%           TOTAL              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    	Route 	 Cells 	
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	  410	13492	1.66053
+DFSR	1176	10641	1.46119
+DFSL	1242	 4933	0.88823
+DIJK	 462	 8104	0.81826
+ASTAR	444	 6294	0.67656
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%          RANKINGS            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+                LESS
+     SHORTEST  CHECKS  FASTEST
+--------------------------------
+map1	BFS, DIJK, ASTAR	DFSr	ASTAR
+map2	BFS, DIJK, ASTAR	ASTAR	ASTAR
+map3	BFS	DFSl	DFSl
+map4	BFS	DFSl	DFSl
+map5	BFS	DFSr	DFSr
+map6	BFS, ASTAR	ASTAR	ASTAR
+map7	BFS	DFSl	ASTAR
+map8	BFS, DIJK	DFSl	ASTAR
+map9	BFS, ASTAR	DFSl	ASTAR
+map10	BFS, ASTAR	DFSl	DFSl
+map11	BFS, DIJK, ASTAR	ASTAR	ASTAR
+--------------------------------
+
+	SHORTEST ROUTE
+--------------------------------
+1º: BFS (4)
+2º: BFS, DIJK, ASTAR (3)
+3º: BFS, ASTAR (3)
+
+	LESS CELLS CHECKED
+--------------------------------
+1º: DFSl (6)
+2º: ASTAR (3)
+3º: DFSr (2)
+
+	FASTEST ALGORITHM
+--------------------------------
+1º: ASTAR (7)
+2º: DFSl (3)
+3º: DFSr (1)
+```
+
+Como se puede observar en los resultados globales, el algoritmo que mejor resultados obtiene es A*. Este algoritmo ha sido siete veces el más rápido y en seis ocasiones a encontrado la ruta más corta.
+
+Por otro lado, viendo los resultados acumulados en los once mapas, es el segundo con la ruta más corta (444) después de BFS, que como ya se ha comentado encuentra siempre la ruta más corta si existe. En cuanto al número de accesos y de tiempo de ejecución es el mejor, seguido por DFS en número de accesos (~6300 frente a ~6500) y seguido por Dijkstra en tiempo de ejecución (0.676s frente a 0.818s).
+
+Dijkstra también obtiene bueno resultados, aunque no tan buenos como A*. Entre las diferencias entre ambos, destacar que Dijkstra (al igual que los algoritmos sin costes) no utiliza la posición de la meta por lo que se podría ejecutar en un caso en el que esta fuera desconocida.
+
+### Extra 6: Mapa Laberinto
 Los mapas existentes son todos bastante abiertos, así que por comprobar como se comportan los algoritmos en un mapa más enrevesado he creado un laberinto.
 Los ficheros de este nuevo mapa se encuentran en el directorio `lab1`.
 
@@ -221,22 +304,27 @@ Los ficheros de este nuevo mapa se encuentran en el directorio `lab1`.
 
 ![lab1](maps/lab1/lab1.jpg)
 
-Comparando ambos algoritmos, se obtienen los siguientes resultados:
+Comparando los algoritmos, se obtienen los siguientes resultados:
 ```
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%		    lab1	          %%
+%%		lab1		          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     	Route 	 Cells 	
-Alg.	Length	Checked   Time
----------------------------------
-BFS	   60	    563	0.03758
-DFSr	  72	    398	0.03582
-DFSl	  74	    375	0.0336
+Alg.	Length	Checked	  Time
+--------------------------------
+BFS	  60	563	0.03255
+DFSr	 72	398	0.03306
+DFSl	 74	375	0.03218
+DIJK	 62	563	0.03328
+ASTAR	64	447	0.02620
 
 Shortest -------> BFS (60)
 Less checks ----> DFSl (375)
-Fastest --------> DFSl (0.0336)
+Fastest --------> ASTAR (0.0262)
+
 ```
 
-Los resultados obtenidos son similares a los expuestos en el apartado anterior. El camino más corto es el encontrado por el BFS (60) siendo además el más lento. El más rápido es el DFS a izquierzas, que curiosamente posee la ruta más larga pero que es el que menos accesos a casillas del mapa ha realizado.
+Los resultados obtenidos son similares a los expuestos en los apartados anteriores. El camino más corto es el encontrado por el BFS (60), seguido por Dijkstra (62) y por A* (64). Los algoritmos que encuentran la ruta más corta son también los más lentos (BFS con 0.032 y Dijkstra 0.033), aunque obtienen resultados similares al resto.
+
+El mejor resultado es el obtenido por A*, siendo visiblemente más rápido que el resto de algoritmos (0.026).
